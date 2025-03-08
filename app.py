@@ -26,10 +26,6 @@ if st.button("🚀 Start Screening"):
     
     if stocks_up_3_to_5:
         df = pd.DataFrame(stocks_up_3_to_5, columns=["Name", "Token", "Close", "Change (%)"])
-        search = st.text_input("🔍 Search Stock:", "").upper()
-        if search:
-            df = df[df["Name"].str.contains(search, na=False)]
-        
         st.write(f"### Stocks 3-5% Up in **{selected_list}**:")
         st.dataframe(df.style.format({"Close": "{:.2f}", "Change (%)": "{:.2f}"}))
     else:
