@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 from alice_client import initialize_alice
@@ -16,21 +15,22 @@ def fetch_stocks(tokens):
 st.set_page_config(page_title="Stock Screener", layout="wide")
 st.title("📈 Stock Screener - Daily Gainers")
 
-# Sidebar Selection
-selected_list = st.sidebar.selectbox("Select Stock List:", list(STOCK_LISTS.keys()))
+# Stock List Selection (Better for Mobile)
+with st.expander("📋 Select Stock List:", expanded=True):
+    selected_list = st.selectbox("Choose from the list", list(STOCK_LISTS.keys()))
 
-# Fetch and Cache Data
-tokens = STOCK_LISTS[selected_list]
-stocks_up_3_to_5 = fetch_stocks(tokens)  # Cached API call
-
-# Convert to DataFrame
-if stocks_up_3_to_5:
-    df = pd.DataFrame(stocks_up_3_to_5, columns=["Name", "Token", "Close", "Change (%)"])
-    search = st.text_input("Search Stock:", "").upper()
-    if search:
-        df = df[df["Name"].str.contains(search, na=False)]
+# Start Screening Button
+if st.button("🚀 Start Screening"):
+    tokens = STOCK_LISTS[selected_list]
+    stocks_up_3_to_5 = fetch_stocks(tokens)  # Cached API call
     
-    st.write(f"### Stocks 3-5% Up in **{selected_list}**:")
-    st.dataframe(df.style.format({"Close": "{:.2f}", "Change (%)": "{:.2f}"}))
-else:
-    st.warning(f"No stocks in **{selected_list}** met the 3-5% criteria.")
+    if stocks_up_3_to_5:
+        df = pd.DataFrame(stocks_up_3_to_5, columns=["Name", "Token", "Close", "Change (%)"])
+        search = st.text_input("🔍 Search Stock:", "").upper()
+        if search:
+            df = df[df["Name"].str.contains(search, na=False)]
+        
+        st.write(f"### Stocks 3-5% Up in **{selected_list}**:")
+        st.dataframe(df.style.format({"Close": "{:.2f}", "Change (%)": "{:.2f}"}))
+    else:
+        st.warning(f"No stocks in **{selected_list}** met the 3-5% criteria.")
