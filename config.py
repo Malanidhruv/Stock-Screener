@@ -1,3 +1,3 @@
 def get_user_credentials():
     """Return hardcoded credentials."""
-    return "1141826", "i4iqIK4AHvmBPl5YTh8pzoivtjjXoeqh0PKE00DP8ZgUuaZDeD1gGF8hAmnpq0ipd6v7tH29XSleUDiGYrg1qsz2dcZvqgrjB3kNVrAGkzQdYm3jitzdAOBK5sfVQa7q"
+    return "1141826", "8ZBly8b7uFe9ZjpxxYOG0QqHSMZz8psgGgYaDaW6vkI2PWErkcElGrExfPyTbGcRQAbbuk4fOl1XPkVBy0dKIPJHPLsESVtQBZpv6ftZGEYLHc9zO0yYpfP9pJWN4Et0"
