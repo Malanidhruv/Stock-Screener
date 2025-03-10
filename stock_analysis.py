@@ -21,7 +21,7 @@ def fetch_stock_data(alice, token):
         day_before_close = df['close'].iloc[-2]
         pct_change = ((yesterday_close - day_before_close) / day_before_close) * 100
 
-        if 3 <= pct_change <= 5:
+        if 2 <= pct_change <= 5:
             return {
                 'Name': instrument.name,
                 'Token': token,
