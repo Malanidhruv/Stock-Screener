@@ -4,8 +4,11 @@ from alice_client import initialize_alice
 from stock_analysis import get_stocks_3_to_5_percent_up
 from stock_lists import STOCK_LISTS
 
+# **Set Page Config First!**
+st.set_page_config(page_title="Stock Screener", layout="wide")
+
 # Initialize AliceBlue API
-st.write("Initializing AliceBlue API...")  # Show in UI for debugging
+st.write("Initializing AliceBlue API...")  # Debugging message
 try:
     alice = initialize_alice()
     st.success("AliceBlue API initialized successfully! ✅")
@@ -24,8 +27,7 @@ def fetch_stocks(tokens):
         st.error(f"Error fetching stock data: {e}")
         return []
 
-# Streamlit Setup
-st.set_page_config(page_title="Stock Screener", layout="wide")
+# **Streamlit UI Components**
 st.title("📈 Stock Screener - Daily Gainers")
 
 # Stock List Selection
