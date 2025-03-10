@@ -8,7 +8,7 @@ def fetch_stock_data(alice, token):
         instrument = alice.get_instrument_by_token('NSE', token)
 
         to_datetime = datetime.now()
-        from_datetime = to_datetime - timedelta(days=3)
+        from_datetime = to_datetime - timedelta(days=5)
         interval = "D"
 
         historical_data = alice.get_historical(instrument, from_datetime, to_datetime, interval)
